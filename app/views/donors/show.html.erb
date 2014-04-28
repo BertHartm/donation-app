@@ -39,7 +39,7 @@ Welcome, <%= @donor.email %>
 <% current_donor.donations.each do |donation| %>
     <div class='donation'>
       <h3><%= donation.title %></h3>
-      <span class='description'><%= donation.description %></span>
+      <span class='description'><%= donation.description %></span><br>
       <%= render_donation_type(donation.donation_type) %>
     </div>
 <% end %>
