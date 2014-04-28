@@ -24,7 +24,7 @@ describe "add donation", :type => :feature do
     click_button "Create Donation"
     expect(page).to have_content "Physical donation test"
     expect(page).to have_content "Test item for physical donations"
-    expect(page).to have_content "12"
+    expect(page).to have_content "12cm"
   end
 
   it "adds voucher donations" do

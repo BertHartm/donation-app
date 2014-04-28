@@ -14,11 +14,11 @@ Welcome, <%= @donor.email %>
     <div id="physical" class="donation-type-form">
     <%= d.fields_for PhysicalDonation.new do |p| %>
         <%= p.label :height %>
-        <%= p.text_field :height %>
+        <%= p.text_field :height %>cm
         <%= p.label :width %>
-        <%= p.text_field :width %>
+        <%= p.text_field :width %>cm
         <%= p.label :weight %>
-        <%= p.text_field :weight %>
+        <%= p.text_field :weight %>kg
     <% end %>
     </div>
     <div id="voucher" class="donation-type-form">
