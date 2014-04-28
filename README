@@ -1,0 +1,2 @@
+A simple demo rails application of capybara, polymorphic associations, and google maps.
+Please change the google maps api key if you fork. It will break in the future.
