@@ -1,2 +1,6 @@
 A simple demo rails application of capybara, polymorphic associations, and google maps.
-Please change the google maps api key if you fork. It will break in the future.
+setup:
+  - normal rails setup (bundle install, rake db:migrate, etc)
+  - Please change the google maps api key if you fork. It will break in the future.
+testing:
+  - run 'rspec && rspec spec/features/*'
