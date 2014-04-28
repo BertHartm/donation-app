@@ -1,0 +1,9 @@
+<script type="text/javascript">
+  <% list = location_list.select{|donation| donation.donation_type.is_a?(ExperienceDonation)} %>
+  <% if not list.empty? %>
+    var experience_donations = 
+      <%# TODO: this is an XSS bug, better to write a json_safe or load the data a different way %>
+      <%= list.to_json(:include => :donation_type).html_safe %>
+    ;
+  <% end %>
+</script>

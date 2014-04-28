@@ -40,6 +40,10 @@ Welcome, <%= @donor.email %>
     <%= d.submit %>
 <% end %>
 
+<h2>Where you've donated</h2>
+<div id="map-canvas"></div>
+<%= render(:partial => "donations/location_list", :object => current_donor.donations) %>
+
 <h2>Donations</h2>
 <% current_donor.donations.each do |donation| %>
     <div class='donation'>
