@@ -6,6 +6,11 @@ Welcome, <%= @donor.email %>
     <%= d.text_field :title %><br>
     <%= d.label :description %>
     <%= d.text_field :description %><br>
+    Type of Donation:
+    <%= radio_button_tag(:donation_type, "physical") %><%= label_tag(:donation_type_physical, "Physical") %>
+    <%= radio_button_tag(:donation_type, "voucher") %><%= label_tag(:donation_type_voucher, "Voucher") %>
+    <%= radio_button_tag(:donation_type, "experience") %><%= label_tag(:donation_type_experience, "Experience") %>
+    <br>
     <div id="physical" class="donation-type-form">
     <%= d.fields_for PhysicalDonation.new do |p| %>
         <%= p.label :height %>
