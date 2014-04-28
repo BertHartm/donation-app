@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  root 'donation#show'
+  root 'donors#show'
   
   devise_for :donors
+
+  resources :donations, :only => [:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
