@@ -6,6 +6,32 @@ Welcome, <%= @donor.email %>
     <%= d.text_field :title %><br>
     <%= d.label :description %>
     <%= d.text_field :description %><br>
+    <div id="physical" class="donation-type-form">
+    <%= d.fields_for PhysicalDonation.new do |p| %>
+        <%= p.label :height %>
+        <%= p.text_field :height %>
+        <%= p.label :width %>
+        <%= p.text_field :width %>
+        <%= p.label :weight %>
+        <%= p.text_field :weight %>
+    <% end %>
+    </div>
+    <div id="voucher" class="donation-type-form">
+    <%= d.fields_for VoucherDonation.new do |v| %>
+        <%= v.label :expiration_date %>
+        <%= v.date_select :expiration_date %>
+    <% end %>
+    </div>
+    <div id="experience" class="donation-type-form">
+    <%= d.fields_for ExperienceDonation.new do |e| %>
+        <%= e.label :contact %>
+        <%= e.text_field :contact %>
+        <%= e.label :latitude %>
+        <%= e.text_field :latitude %>
+        <%= e.label :longitude %>
+        <%= e.text_field :longitude %>
+    <% end %>
+    </div>
     <%= d.submit %>
 <% end %>
 
@@ -14,5 +40,6 @@ Welcome, <%= @donor.email %>
     <div class='donation'>
       <h3><%= donation.title %></h3>
       <span class='description'><%= donation.description %></span>
+      <%= render_donation_type(donation.donation_type) %>
     </div>
 <% end %>

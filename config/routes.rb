@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   devise_for :donors
 
   resources :donations, :only => [:create]
+  resources :physical_donations, :only => [:create]
+  resources :voucher_donations, :only => [:create]
+  resources :experience_donations, :only => [:create]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
