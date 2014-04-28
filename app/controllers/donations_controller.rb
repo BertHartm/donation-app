@@ -2,14 +2,20 @@ class DonationsController < ApplicationController
   before_action :authenticate_donor!
 
   def create
-    pd = PhysicalDonation.new(physical_params)
-    vd = VoucherDonation.new(voucher_params)
-    ed = ExperienceDonation.new(experience_params)
-
     donation = Donation.create(donation_params)
     donation.donor = current_donor
 
-    donation.donation_type = ed
+    case params[:donation_type]
+    when "physical"
+      pd = PhysicalDonation.new(physical_params)
+      donation.donation_type = pd
+    when "voucher"
+      vd = VoucherDonation.new(voucher_params)
+      donation.donation_type = vd
+    when "experience"
+      ed = ExperienceDonation.new(experience_params)
+      donation.donation_type = ed
+    end
     current_donor.donations << donation
     redirect_to :controller => :donors, :action => :show and return
   end
@@ -28,6 +34,6 @@ class DonationsController < ApplicationController
   end
 
   def donation_params
-    params.require(:donation).except!(:donation_type, :physical_donation, :voucher_donation, :experience_donation).permit(:title, :description)
+    params.require(:donation).dup.except!(:donation_type, :physical_donation, :voucher_donation, :experience_donation).permit(:title, :description)
   end
 end

@@ -16,6 +16,7 @@ describe "add donation", :type => :feature do
     within("#new_donation") do
       fill_in "donation_title", :with => "Physical donation test"
       fill_in "donation_description", :with => "Test item for physical donations"
+      choose "donation_type_physical"
       fill_in "donation_physical_donation_height", :with => "12"
       fill_in "donation_physical_donation_width", :with => "13"
       fill_in "donation_physical_donation_weight", :with => "14"
@@ -31,6 +32,7 @@ describe "add donation", :type => :feature do
     within("#new_donation") do
       fill_in "donation_title", :with => "Voucher donation test"
       fill_in "donation_description", :with => "Test item for voucher donations"
+      choose("Voucher")
     end
     click_button "Create Donation"
     expect(page).to have_content "Voucher donation test"
@@ -42,6 +44,7 @@ describe "add donation", :type => :feature do
     within("#new_donation") do
       fill_in "donation_title", :with => "Experience donation test"
       fill_in "donation_description", :with => "Test item for experience donations"
+      choose("Experience")
       fill_in "donation_experience_donation_contact", :with => "Experience Contact"
       fill_in "donation_experience_donation_latitude", :with => "40.75"
       fill_in "donation_experience_donation_longitude", :with => "74.03"
