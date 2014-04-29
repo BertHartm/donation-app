@@ -34,6 +34,6 @@ class DonationsController < ApplicationController
   end
 
   def donation_params
-    params.require(:donation).dup.except!(:donation_type, :physical_donation, :voucher_donation, :experience_donation).permit(:title, :description)
+    params.require(:donation).dup.except!(:physical_donation, :voucher_donation, :experience_donation).permit(:title, :description)
   end
 end

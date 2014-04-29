@@ -7,35 +7,37 @@ Welcome, <%= @donor.email %>
     <%= d.label :description %>
     <%= d.text_field :description %><br>
     Type of Donation:
+    <!-- set up radio button to select between the 3 different donation types (and their forms) -->
     <%= radio_button_tag(:donation_type, "physical") %><%= label_tag(:donation_type_physical, "Physical") %>
     <%= radio_button_tag(:donation_type, "voucher") %><%= label_tag(:donation_type_voucher, "Voucher") %>
     <%= radio_button_tag(:donation_type, "experience") %><%= label_tag(:donation_type_experience, "Experience") %>
     <br>
     <div id="physical" class="donation-type-form">
-    <%= d.fields_for PhysicalDonation.new do |p| %>
+      <%= d.fields_for PhysicalDonation.new do |p| %>
         <%= p.label :height %>
         <%= p.text_field :height %>cm
         <%= p.label :width %>
         <%= p.text_field :width %>cm
         <%= p.label :weight %>
         <%= p.text_field :weight %>kg
-    <% end %>
+      <% end %>
     </div>
     <div id="voucher" class="donation-type-form">
-    <%= d.fields_for VoucherDonation.new do |v| %>
+      <%= d.fields_for VoucherDonation.new do |v| %>
         <%= v.label :expiration_date %>
         <%= v.date_select :expiration_date %>
-    <% end %>
+      <% end %>
     </div>
     <div id="experience" class="donation-type-form">
-    <%= d.fields_for ExperienceDonation.new do |e| %>
+      <!-- TODO: get lat/lng from HTML geo spec -->
+      <%= d.fields_for ExperienceDonation.new do |e| %>
         <%= e.label :contact %>
         <%= e.text_field :contact %>
         <%= e.label :latitude %>
         <%= e.text_field :latitude %>
         <%= e.label :longitude %>
         <%= e.text_field :longitude %>
-    <% end %>
+      <% end %>
     </div>
     <%= d.submit %>
 <% end %>
@@ -45,10 +47,12 @@ Welcome, <%= @donor.email %>
 <%= render(:partial => "donations/location_list", :object => current_donor.donations) %>
 
 <h2>Donations</h2>
-<% current_donor.donations.each do |donation| %>
+<div id="donations">
+  <% current_donor.donations.each do |donation| %>
     <div class='donation'>
       <h3><%= donation.title %></h3>
       <span class='description'><%= donation.description %></span><br>
       <%= render_donation_type(donation.donation_type) %>
     </div>
-<% end %>
+  <% end %>
+</div>

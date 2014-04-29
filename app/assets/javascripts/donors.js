@@ -20,6 +20,7 @@ $(document).ready(function() {
 });
 
 function initializeMap() {
+    // should call geolocation here and get users actual location
     var mapOptions = {
         center: new google.maps.LatLng(40.7127, -74.0059),
         zoom: 8
